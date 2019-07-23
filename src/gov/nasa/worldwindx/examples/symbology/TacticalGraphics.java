@@ -479,8 +479,8 @@ public class TacticalGraphics extends ApplicationTemplate
             TacticalGraphic graphic;
 
             /////////////////////////////////////////////
-			// Block (2.X.1.1)
-			/////////////////////////////////////////////
+            // Block (2.X.1.1)
+            /////////////////////////////////////////////
             List<Position> positions = Arrays.asList(
                 Position.fromDegrees(34.9349, -117.6303),
                 Position.fromDegrees(34.9843, -117.6303),
@@ -490,8 +490,8 @@ public class TacticalGraphics extends ApplicationTemplate
             layer.addRenderable(graphic);
 
             /////////////////////////////////////////////
-			// Penetrate (2.X.1.17)
-			/////////////////////////////////////////////
+            // Penetrate (2.X.1.17)
+            /////////////////////////////////////////////
             positions = Arrays.asList(
                 Position.fromDegrees(35.0614, -117.6525),
                 Position.fromDegrees(35.0130, -117.6514),
