@@ -19,7 +19,7 @@ import java.util.*;
 
 /**
  * Implementation of block graphics. This class implements the following graphics:
- * <p/>
+ * <p></p>
  * <ul> <li>Block (2.X.1.1)</li> <li>Penetrate (2.X.1.17)</li> </ul>
  *
  * @author maciejziolkowski
