@@ -30,7 +30,6 @@ package gov.nasa.worldwind.layers.mercator;
 import gov.nasa.worldwind.avlist.*;
 import gov.nasa.worldwind.geom.*;
 import gov.nasa.worldwind.layers.*;
-import gov.nasa.worldwind.render.DrawContext;
 import gov.nasa.worldwind.util.*;
 
 import javax.imageio.ImageIO;
