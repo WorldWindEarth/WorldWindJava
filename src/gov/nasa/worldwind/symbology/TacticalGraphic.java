@@ -43,7 +43,7 @@ import gov.nasa.worldwind.util.UnitsFormat;
  * <p>
  * See the {@link gov.nasa.worldwindx.examples.symbology.Symbology} and {@link gov.nasa.worldwindx.examples.symbology.TacticalGraphics}
  * example applications for examples of how to use tactical graphics.
- * <h1>Construction</h1>
+ * <h2>Construction</h2>
  * <p>
  * TacticalGraphics are typically created by an instance of {@link TacticalGraphicFactory}. Each graphic within a symbol
  * set is identified by a string identifier. The format of this identifier depends on the symbol set. For example, a
@@ -91,7 +91,7 @@ import gov.nasa.worldwind.util.UnitsFormat;
  * graphic should be styled. In the example above we added a text modifier of "Alpha" to identify our shape. These
  * parameters can be specified using a parameter list when the TacticalGraphic is created, as shown above. They can also
  * be set after creation using setters in the TacticalGraphic interface.
- * <h1>Modifiers</h1>
+ * <h2>Modifiers</h2>
  * <p>
  * Many graphics support text or graphic modifiers. Each modifier is identified by a String key. The set of possible
  * modifiers is determined by the symbol set. Modifiers can be specified in the parameter list when a graphic is
@@ -114,7 +114,7 @@ import gov.nasa.worldwind.util.UnitsFormat;
  * TacticalGraphic graphic = milstd2525Factory.createGraphic("GHGPGAG----AUSX", positions, null);
  * graphic.setModifier(SymbologyConstants.UNIQUE_DESIGNATION, "Boston");
  * </pre>
- * <h1>Position</h1>
+ * <h2>Position</h2>
  * <p>
  * Each tactical graphic is positioned by one or more control points. How many points are required depends on the type
  * of graphic.  A point graphic will only require one point. A more complex shape may require three or four, and a line
@@ -139,7 +139,7 @@ import gov.nasa.worldwind.util.UnitsFormat;
  *
  * TacticalGraphic graphic = milstd2525Factory.createGraphic("GFGPSLA----AUSX", positions, null);
  * </pre>
- * <h1>Sub-interfaces of TacticalGraphic</h1>
+ * <h2>Sub-interfaces of TacticalGraphic</h2>
  * <p>
  * TacticalGraphic describes any tactical graphic in the most general terms: a list of positions and modifiers. However,
  * this general interface is not convenient for all graphics. For example, when creating a circle graphic it is more

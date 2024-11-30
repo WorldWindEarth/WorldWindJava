@@ -42,15 +42,15 @@
     Most of WorldWind's components are defined by interfaces. This allows application developers to create their own
     implementations and easily integrate them into WorldWind. </p>
 
-<h2>The <code>WorldWind</code> Class</h2>
+<h1>The <code>WorldWind</code> Class</h1>
 
 <p>TODO</p>
 
-<h2>Multiple WorldWind Windows</h2>
+<h1>Multiple WorldWind Windows</h1>
 
 <p>TODO</p>
 
-<h2>Data Retrieval</h2>
+<h1>Data Retrieval</h1>
 
 <p>
     WorldWind works with enormous quantities of data and information, all of which exist primarily on remote data
@@ -99,7 +99,7 @@
     Retriever</code> and requests retrieval. Later, after retrieval has placed the data on disk, the situation will be
     the local case and data can be loaded into memory within the <code>Runnable</code>. </p>
 
-<h2>Memory Cache</h2>
+<h1>Memory Cache</h1>
 
 <p>So that data can be shared among caching objects, most cached data used within WorldWind is cached in a {@link
    gov.nasa.worldwind.cache.MemoryCache}. <code>MemoryCache</code> enable cached data to be shared among all
@@ -114,7 +114,7 @@
    No object manages its own storage. The file cache cache manages multiple disk storage locations and unifies access to
    them. The file cache is a singleton, accessible through the <code>WorldWind</code> singleton.</p>
 
-<h2>Picking and Selection</h2>
+<h1>Picking and Selection</h1>
 
 <p>WorldWind can determine the displayed objects at a given screen position in a <code>WorldWindow</code>. When the
    application wants to know what's displayed at a particular point, say the cursor position, it calls a method on
@@ -158,7 +158,7 @@
 <p>WorldWind provides utility classes to make it simple for layers to participate in this picking scheme. See {@link
    gov.nasa.worldwind.pick.PickSupport} </p>
 
-<h2>Use of Proxies</h2>
+<h1>Use of Proxies</h1>
 
 <p>A proxy is set by calling {@link gov.nasa.worldwind.Configuration#setValue} for each of the following keys:</p>
 <ul>
@@ -176,7 +176,7 @@
    to attempting retrieval of a network resource &mdash; anything addressed by a URL &mdash; WorldWind checks the
    offline-mode setting and does not attempt retrieval if the value is true.</p>
 
-<h2 id="path-types">Path Types</h2>
+<h1 id="path-types">Path Types</h1>
 
 <p>There is only one way to draw a straight line on a plane, but there are several ways to draw a straight line on the
    surface of a globe. Most shapes support the following path types:</p>

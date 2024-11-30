@@ -45,7 +45,7 @@ import java.util.List;
  * and tracks the list of objects intersecting the screen rectangle. The screen rectangle is displayed on a layer
  * created by ScreenSelector, and is used as the WorldWindow's pick rectangle to perform object selection. Objects
  * intersecting the screen rectangle can be accessed by calling {@link #getSelectedObjects()}.
- * <h3>Using ScreenSelector</h3>
+ * <h2>Using ScreenSelector</h2>
  * <p>
  * To use ScreenSelector in an application, create a new instance of ScreenSelector and specify the application's
  * WorldWindow as the sole parameter. When the user wants to define a screen selection, call {@link #enable} and the

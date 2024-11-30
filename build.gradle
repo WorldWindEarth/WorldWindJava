@@ -2,7 +2,7 @@ apply plugin: 'java-library'
 apply plugin: 'maven-publish'
 
 group = 'earth.worldwind'
-version = '2.3.0' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
+version = '2.3.1' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
 
 ant {
     property(file: 'release-build.properties')
@@ -14,7 +14,6 @@ ext {
     gdalVersion = '3.10.0'
     jacksonVersion = '1.9.13'
     junitVersion = '4.5'
-    //systemGDAL = true
 }
 
 repositories {
@@ -24,11 +23,11 @@ repositories {
 }
 
 dependencies {
-	implementation group: 'org.jogamp.jogl', name: 'jogl-all-main', version:"$project.joglVersion"
-    implementation group: 'org.jogamp.gluegen', name: 'gluegen-rt-main', version:"$project.joglVersion"
-    
+	implementation "org.jogamp.jogl:jogl-all-main:$project.joglVersion"
+    implementation "org.jogamp.gluegen:gluegen-rt-main:$project.joglVersion"
+
     if (project.hasProperty('systemGDAL')) {
-        implementation files("C:\\Program Files\\GDAL\\java\\gdal.jar")
+        implementation files("${ant.properties['gdal.jar.dir']}/gdal.jar")
     } else {
         implementation "org.gdal:gdal:$project.gdalVersion"
     }
@@ -50,10 +49,10 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     }
 }
 
-task worldwindJar(type: Jar) {
+task extensionsJar(type: Jar) {
     group = 'build'
-    description = 'Assembles a jar archive containing the WorldWind classes.'
-    archivesBaseName = 'worldwind'
+    description = 'Assembles a jar archive containing the extension classes.'
+    baseName = 'worldwindx'
     from (sourceSets.main.output) {
         exclude 'com/**'
         exclude 'config/**'
@@ -62,9 +61,9 @@ task worldwindJar(type: Jar) {
     }
     doLast {
         copy {
-            from "$buildDir/libs/$worldwindJar.archiveFileName"
+            from "$buildDir/libs/$extensionsJar.archiveFileName"
             into project.projectDir
-            rename "$worldwindJar.archiveFileName", "$worldwindJar.baseName.$worldwindJar.extension"
+            rename "$extensionsJar.archiveFileName", "$extensionsJar.baseName.$extensionsJar.extension"
         }
     }
 }
@@ -98,7 +97,7 @@ def pomConfig = {
 
 publishing {
     publications {
-        bintray(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
             artifact sourcesJar
             artifact javadocJar
@@ -177,7 +176,7 @@ javadoc {
 
 artifacts {
     archives sourcesJar
-    archives worldwindJar
+    archives extensionsJar
     archives javadocJar
 }
 

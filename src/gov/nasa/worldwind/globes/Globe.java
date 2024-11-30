@@ -39,7 +39,7 @@ import java.util.List;
  * elevations for geographic positions on the surface of the globe. Globe provides methods for converting geographic
  * positions (latitude, longitude, and elevation) to cartesian coordinates, and for converting cartesian to geographic.
  * The origin and orientation of the cartesian coordinate system are determined by implementations of this interface.
- * <h1>Computations in Cartesian Coordinates</h1>
+ * <h2>Computations in Cartesian Coordinates</h2>
  * <p>
  * Globe provides methods for performing computations in the coordinate system represented by a globe's surface in
  * cartesian coordinates. These methods perform work with respect to the globe's actual shape in 3D cartesian
@@ -51,7 +51,7 @@ import java.util.List;
  * #computeSurfaceNormalAtLocation(gov.nasa.worldwind.geom.Angle, gov.nasa.worldwind.geom.Angle)}</li> <li>{@link
  * #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Angle, gov.nasa.worldwind.geom.Angle, double)}</li>
  * </ul>
- * <h1>Computations in Ellipsoidal Coordinates</h1>
+ * <h2>Computations in Ellipsoidal Coordinates</h2>
  * <p>
  * Globe provides methods for performing computation on the ellipsoid represented by a globe's equatorial radius and its
  * polar radius. These methods perform work with respect to the ellipsoid in 3D cartesian coordinates. Calling any of

@@ -55,10 +55,10 @@ import java.util.*;
  * <table><caption style="font-weight: bold;">createIcon Parameters</caption> <tr><th>Key</th><th>Type</th><td><th>Description</th></tr> <tr><td>SymbologyConstants.SHOW_ICON</td><td>Boolean</td><td>Determines
  * if the symbol will be created with an icon.</td></tr> <tr><td>SymbologyConstants.SHOW_FRAME</td><td>Boolean</td><td>Determines
  * if the symbol will be created with a frame.</td></tr> <tr><td>SymbologyConstants.SHOW_FILL</td><td>Boolean</td><td>Determines
- * if the symbol will be created with a fill color.</td></tr><tr><td valign="top">AVKey.COLOR</td><td
- * valign="top">java.awt.Color</td><td valign="top">Fill color applied to the symbol. If the symbol is drawn with a
- * frame, then this color will be used to fill the frame. If the symbol is not drawn with a frame, then the fill will be
- * applied to the icon itself. The fill color has no effect if Show Fill is False.</td></tr> </table>
+ * if the symbol will be created with a fill color.</td></tr><tr><td>AVKey.COLOR</td><td>java.awt.Color</td>
+ * <td>Fill color applied to the symbol. If the symbol is drawn with a frame, then this color will be used to fill the frame.
+ * If the symbol is not drawn with a frame, then the fill will be applied to the icon itself.
+ * The fill color has no effect if Show Fill is False.</td></tr> </table>
  *
  * @author ccrick
  * @version $Id: MilStd2525IconRetriever.java 1171 2013-02-11 21:45:02Z dcollins $

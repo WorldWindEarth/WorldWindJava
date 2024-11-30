@@ -180,7 +180,7 @@ public class BalloonController extends MouseAdapter implements SelectListener
      * Handle a mouse click. If the top picked object has a balloon attached to it the balloon will be made visible. A
      * balloon may be attached to a KML feature, or to any picked object though {@link AVKey#BALLOON}.
      *
-     * @param e Mouse event
+     * @param awtEv Mouse event
      */
     @Override
     public void mouseClicked(MouseEvent awtEv)

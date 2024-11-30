@@ -38,7 +38,7 @@ import java.beans.PropertyChangeListener;
 /**
  * JNI bindings for the Windows WebView library. This library provides functions for creating and destroying native
  * WebViews, sending user input to a WebView, and adding listeners to a WebView.
- * <h3>Message loops</h3>
+ * <h2>Message loops</h2>
  * <p>
  * WebViews created by this library must be managed by a message loop in native code. This class provides methods for
  * creating and running a native message loop using a Java thread. Each WebView must be associated with one message

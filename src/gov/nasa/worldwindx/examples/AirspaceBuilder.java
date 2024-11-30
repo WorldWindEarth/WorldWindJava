@@ -57,7 +57,7 @@ import java.util.zip.*;
  * Illustrates runtime construction of 3D extruded polygons and spheres using WorldWind <code>{@link Airspace}</code>
  * shapes. This uses a <code>{@link PolygonEditor}</code> and a <code>{@link SphereAirspaceEditor}</code> to enable
  * runtime editing of <code>{@link Polygon}</code> airspace and <code>{@link SphereAirspace}</code> shapes.
- * <h1>Usage Instructions</h1>
+ * <h2>Usage Instructions</h2>
  * <p>
  * <strong>Adding and Removing Shapes</strong> <br> Add a shape by selecting either <code>Polygon</code> or
  * <code>Sphere</code> in the drop down box then clicking <code>New shape</code>. Delete a shape by left-clicking it
@@ -75,7 +75,7 @@ import java.util.zip.*;
  * near the polygon. Remove a polygon control point by holding the <code>Control</code> key and left-clicking the blue
  * sphere at the vertex. Move a polygon vertex by left-clicking and dragging it. Change a polygon's bottom or top height
  * by holding the <code>Shift</code> key then left-click any blue sphere at a vertex and drag it.
- * <h1>Demo Shapes</h1>
+ * <h2>Demo Shapes</h2>
  * <p>
  * Select <code>File -&gt; Load Demo Shapes</code> to display a set of polygon airspace shapes built with this editor.
  * The data for these shapes is located in the WorldWind project under
