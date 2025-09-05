@@ -1,0 +1,31 @@
+{
+    "name": "WorldWindJava",
+    "version": "1.0.0",
+    "type": "java",
+    "sourceRoots": [
+        "src"
+    ],
+    "testSourceRoots": [
+        "test"
+    ],
+    "outputPath": "build/classes",
+    "testOutputPath": "build/test-classes",
+    "dependencies": [
+        "jogl-all.jar",
+        "gluegen-rt.jar",
+        "gluegen-rt-natives-windows-amd64.jar",
+        "gluegen-rt-natives-windows-i586.jar",
+        "gluegen-rt-natives-linux-amd64.jar",
+        "gluegen-rt-natives-linux-i586.jar",
+        "gluegen-rt-natives-macosx-universal.jar",
+        "jogl-all-natives-windows-amd64.jar",
+        "jogl-all-natives-windows-i586.jar",
+        "jogl-all-natives-linux-amd64.jar",
+        "jogl-all-natives-linux-i586.jar",
+        "jogl-all-natives-macosx-universal.jar",
+        "lib-external/gdal/gdal.jar",
+        "jackson-core-asl.jar",
+        "junit-4.5.jar"
+    ],
+    "javaVersion": "11"
+}
