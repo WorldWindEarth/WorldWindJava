@@ -4,6 +4,11 @@ apply plugin: 'maven-publish'
 group = 'earth.worldwind'
 version = '2.3.1' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
 ant {
     property(file: 'release-build.properties')
     property(file: "gdal.${org.gradle.internal.os.OperatingSystem.current().isWindows() ? 'win' : 'unix'}.properties")
@@ -40,7 +45,7 @@ dependencies {
 task sourcesJar(type: Jar, dependsOn: classes) {
     group = 'build'
     description = 'Assembles a jar archive containing the sources.'
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from (sourceSets.main.allSource) {
         include '**/*.java'
         exclude 'config/**'
@@ -52,7 +57,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 task extensionsJar(type: Jar) {
     group = 'build'
     description = 'Assembles a jar archive containing the extension classes.'
-    baseName = 'worldwindx'
+    archiveBaseName = 'worldwindx'
     from (sourceSets.main.output) {
         exclude 'com/**'
         exclude 'config/**'
@@ -63,7 +68,7 @@ task extensionsJar(type: Jar) {
         copy {
             from "$buildDir/libs/$extensionsJar.archiveFileName"
             into project.projectDir
-            rename "$extensionsJar.archiveFileName", "$extensionsJar.baseName.$extensionsJar.extension"
+            rename "$extensionsJar.archiveFileName", "$extensionsJar.archiveBaseName.$extensionsJar.archiveExtension"
         }
     }
 }
@@ -71,7 +76,7 @@ task extensionsJar(type: Jar) {
 task javadocJar(type: Jar, dependsOn: javadoc) {
     group = 'build'
     description = 'Assembles a jar archive containing the javadocs.'
-    classifier = 'javadoc'
+    archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 
@@ -153,7 +158,7 @@ jar {
         copy {
             from "$buildDir/libs/$jar.archiveFileName"
             into project.projectDir
-            rename "$jar.archiveFileName", "$jar.baseName.$jar.extension"
+            rename "$jar.archiveFileName", "$jar.archiveBaseName.$jar.archiveExtension"
         }
     }
 }
@@ -259,8 +264,8 @@ task milStd2525Zip(type: Zip, dependsOn: processMilStd2525SVGs) {
     def milStd2525PngDir = file(ant.properties['milstd2525.png.dir'])
     from milStd2525PngDir
     include '**/*'
-    archiveName 'milstd2525-symbols.zip'
-    destinationDir milStd2525OutDir
+    archiveFileName = 'milstd2525-symbols.zip'
+    destinationDirectory = milStd2525OutDir
 }
 
 task runLayerManager(type: JavaExec, dependsOn: classes) {
