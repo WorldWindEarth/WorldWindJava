@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "WorldWindow",
+            "request": "launch",
+            "mainClass": "gov.nasa.worldwindx.applications.worldwindow.WorldWindow",
+            "projectName": "worldwind-WorldWindJava"
+        },
+        {
+            "type": "java",
+            "name": "WorldWindow",
+            "request": "launch",
+            "mainClass": "gov.nasa.worldwindx.applications.worldwindow.WorldWindow",
+            "projectName": "WorldWindJava",
+            "args": "",
+            "vmArgs": "-Djava.util.logging.config.file=logging.properties",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "env": {
+                "JAVA_TOOL_OPTIONS": "-Djava.util.logging.config.file=logging.properties"
+            }
+        }
+    ]
+}
