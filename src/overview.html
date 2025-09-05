@@ -56,7 +56,7 @@
     WorldWind works with enormous quantities of data and information, all of which exist primarily on remote data
     servers. Retrieval and local caching of that data is therefore a primary feature of WorldWind. The classes that
     implement retrieval are {@link gov.nasa.worldwind.retrieve.Retriever} and {@link
-    gov.nasa.worldwind.retrieve.RetrievalService}. </p>
+    gov.nasa.worldwind.retrieve.RetrievalService}.</p>
 
 <p>
     {@link gov.nasa.worldwind.retrieve.Retriever} encapsulates a single network retrieval request. It is an interface.
@@ -79,7 +79,7 @@
     for instance, can convert non-DDS formats to DDS, or simply store the data as-is in the file cache. {@link
     gov.nasa.worldwind.terrain.BasicElevationModel} just persists the raw data. The post processor runs in the same
     thread as the retriever, which is neither the event-dispatching (UI) thread nor the rendering thread, but the one
-    created by the retrieval service for that retriever. </p>
+    created by the retrieval service for that retriever.</p>
 
 <p>
     Data that has been previously retrieved or is otherwise local (on disk) is brought into memory in a thread separate
@@ -97,7 +97,7 @@
     java.lang.Runnable} to determine in a separate thread where the data must be drawn from, disk or network. If it's on
     the disk then the task can simply read it and cache it right away. If it's remote then the task creates a <code>
     Retriever</code> and requests retrieval. Later, after retrieval has placed the data on disk, the situation will be
-    the local case and data can be loaded into memory within the <code>Runnable</code>. </p>
+    the local case and data can be loaded into memory within the <code>Runnable</code>.</p>
 
 <h1>Memory Cache</h1>
 
@@ -156,7 +156,7 @@
    receives the full list of picked items, with the truly visible ones marked as such.</p>
 
 <p>WorldWind provides utility classes to make it simple for layers to participate in this picking scheme. See {@link
-   gov.nasa.worldwind.pick.PickSupport} </p>
+   gov.nasa.worldwind.pick.PickSupport}.</p>
 
 <h1>Use of Proxies</h1>
 
