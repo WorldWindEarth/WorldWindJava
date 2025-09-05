@@ -272,6 +272,6 @@ task runLayerManager(type: JavaExec, dependsOn: classes) {
     group = 'run'
     description = 'Runs the LayerManager example app.'
     classpath sourceSets.main.runtimeClasspath
-    main = 'gov.nasa.worldwindx.examples.layermanager.LayerManagerApp'
+    mainClass = 'gov.nasa.worldwindx.examples.layermanager.LayerManagerApp'
     systemProperty 'java.util.logging.config.file', "$project.projectDir/logging.properties"
 }

@@ -1,0 +1,3 @@
+@echo off
+mvn install:install-file -Dfile="D:\worskpaces\workspaceHackaton2015\WorldWindJava_CE\WorldWindJava\worldwind-2.3.1.jar" -DgroupId=com.ursulagis -DartifactId=worldwind -Dversion=2.3.1 -Dpackaging=jar -DgeneratePom=true
+mvn install:install-file -Dfile="D:\worskpaces\workspaceHackaton2015\WorldWindJava_CE\WorldWindJava\worldwindx-2.3.1.jar" -DgroupId=com.ursulagis -DartifactId=worldwindx -Dversion=2.3.1 -Dpackaging=jar -DgeneratePom=true
