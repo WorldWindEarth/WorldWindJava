@@ -29,7 +29,7 @@ package gov.nasa.worldwind.formats.json;
 
 import gov.nasa.worldwind.exception.WWRuntimeException;
 import gov.nasa.worldwind.util.*;
-import org.codehaus.jackson.*;
+import com.fasterxml.jackson.core.*;
 
 import java.io.*;
 

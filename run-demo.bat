@@ -25,9 +25,9 @@ REM A complete listing of 3rd Party software notices and licenses included in
 REM NASA World Wind Java (WWJ)  can be found in the WorldWindJava-v2.2 3rd-party
 REM notices and licenses PDF found in code directory.
 
-REM Default to the ApplicationTemplate example if a class name is not provided
-IF "%1"=="" (SET WWDEMO=gov.nasa.worldwindx.examples.ApplicationTemplate) ELSE (SET WWDEMO=%*)
+REM Default to the WorldWindow application if a class name is not provided
+IF "%1"=="" (SET WWDEMO=gov.nasa.worldwindx.applications.worldwindow.WorldWindow) ELSE (SET WWDEMO=%*)
 
-REM Run a WorldWind Demo
+REM Run a WorldWind Demo with Java 17 compatibility
 @echo Running %WWDEMO%
-java -Xmx1024m -Dsun.java2d.noddraw=true -classpath .\worldwind.jar;.\worldwindx.jar;.\gdal.jar;.\jogl-all.jar;.\gluegen-rt.jar %WWDEMO%
+java -Xmx1024m -Dsun.java2d.noddraw=true --add-exports java.base/java.lang=ALL-UNNAMED --add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.desktop/sun.java2d=ALL-UNNAMED -Djava.util.logging.config.file=logging.properties -classpath .\build\classes\java\main;.\build\libs\worldwind-2.4.0.jar;.\build\libs\worldwindx-2.4.0.jar;.\gdal.jar;.\jogl-all.jar;.\gluegen-rt.jar %WWDEMO%

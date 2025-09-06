@@ -1,12 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
             "name": "WorldWindow",
             "request": "launch",
             "mainClass": "gov.nasa.worldwindx.applications.worldwindow.WorldWindow",
-            "projectName": "worldwind-WorldWindJava"
+            "projectName": "worldwind-WorldWindJava",
+            "vmArgs": "-Djava.util.logging.config.file=logging.properties --add-exports java.base/java.lang=ALL-UNNAMED --add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.desktop/sun.java2d=ALL-UNNAMED"
         },
         {
             "type": "java",
@@ -15,7 +17,7 @@
             "mainClass": "gov.nasa.worldwindx.applications.worldwindow.WorldWindow",
             "projectName": "WorldWindJava",
             "args": "",
-            "vmArgs": "-Djava.util.logging.config.file=logging.properties",
+            "vmArgs": "-Djava.util.logging.config.file=logging.properties --add-exports java.base/java.lang=ALL-UNNAMED --add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.desktop/sun.java2d=ALL-UNNAMED",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "env": {
