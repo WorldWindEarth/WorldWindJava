@@ -12,7 +12,7 @@ jobs:
     
     strategy:
       matrix:
-        java-version: [8]
+        java-version: [11]
     
     steps:
     - name: Checkout code
@@ -43,27 +43,15 @@ jobs:
     - name: Run tests
       run: ./gradlew test --no-daemon --warning-mode all
       
-    - name: Generate Javadoc
-      run: ./gradlew javadoc --no-daemon --warning-mode all
-      continue-on-error: true
-      
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
-      if: matrix.java-version == 8
+      if: matrix.java-version == 11
       with:
         name: worldwind-java-build-${{ github.sha }}
         path: |
           build/libs/
           worldwind-*.jar
           worldwindx-*.jar
-        retention-days: 30
-        
-    - name: Upload Javadoc
-      uses: actions/upload-artifact@v4
-      if: matrix.java-version == 8
-      with:
-        name: javadoc-${{ github.sha }}
-        path: build/docs/javadoc/
         retention-days: 30
         
     - name: Upload test results

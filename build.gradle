@@ -1,12 +1,15 @@
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
 
 group = 'earth.worldwind'
 version = '2.3.1' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
 }
 
 ant {
@@ -67,7 +70,7 @@ task extensionsJar(type: Jar) {
     doLast {
         copy {
             from "$buildDir/libs/$extensionsJar.archiveFileName"
-            into project.projectDir
+            into projectDir
             rename "$extensionsJar.archiveFileName", "$extensionsJar.archiveBaseName.$extensionsJar.archiveExtension"
         }
     }
@@ -106,9 +109,9 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId project.group
-            artifactId project.name
-            version project.version
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description',
@@ -143,6 +146,11 @@ sourceSets {
 
 compileJava {
     options.debug = !project.hasProperty('release')
+    options.release = 11
+}
+
+compileTestJava {
+    options.release = 11
 }
 
 test {
@@ -157,7 +165,7 @@ jar {
     doLast {
         copy {
             from "$buildDir/libs/$jar.archiveFileName"
-            into project.projectDir
+            into projectDir
             rename "$jar.archiveFileName", "$jar.archiveBaseName.$jar.archiveExtension"
         }
     }
@@ -165,7 +173,7 @@ jar {
 
 javadoc {
     options {
-        overview = "$project.projectDir/src/overview.html"
+        overview = "$projectDir/src/overview.html"
         windowTitle = 'WorldWindJava API'
         title = 'NASA WorldWind Java-Community Edition'
         header = 'NASA WorldWind-CE'
@@ -174,6 +182,11 @@ javadoc {
         version = false
         author = false
         use = true
+        // Make Javadoc more lenient to handle HTML issues
+        addBooleanOption('Xdoclint:none', true)
+        addBooleanOption('quiet', true)
+        // Java 11 compatibility
+        addStringOption('source', '11')
     }
     exclude 'com/**'
     exclude 'gov/nasa/worldwind/formats/**'
@@ -273,5 +286,5 @@ task runLayerManager(type: JavaExec, dependsOn: classes) {
     description = 'Runs the LayerManager example app.'
     classpath sourceSets.main.runtimeClasspath
     mainClass = 'gov.nasa.worldwindx.examples.layermanager.LayerManagerApp'
-    systemProperty 'java.util.logging.config.file', "$project.projectDir/logging.properties"
+    systemProperty 'java.util.logging.config.file', "$projectDir/logging.properties"
 }
