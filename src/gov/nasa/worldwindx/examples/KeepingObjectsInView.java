@@ -196,7 +196,7 @@ public class KeepingObjectsInView extends ApplicationTemplate {
             randLocation2 = randomLocation(sector);
             Path path = new Path(Arrays.asList(randLocation1, randLocation2), 0d);
             path.setSurfacePath(true);
-            var attrs = new BasicShapeAttributes();
+            BasicShapeAttributes attrs = new BasicShapeAttributes();
             attrs.setOutlineWidth(3);
             attrs.setOutlineMaterial(new Material(Color.RED));
             path.setAttributes(attrs);

@@ -6,4 +6,15 @@ classes
 testClasses
 
 worldwind.jar
+<<<<<<< HEAD
 worldwindx.jar
+
+gradle
+gradlew
+gradlew.bat
+.gradle
+.nb-gradle
+/bin/
+=======
+worldwindx.jar
+>>>>>>> 57b265b6dc19cccf73759b7e3a41ef452b3742d7

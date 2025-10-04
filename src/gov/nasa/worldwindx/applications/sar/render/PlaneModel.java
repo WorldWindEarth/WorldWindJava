@@ -163,7 +163,7 @@ public class PlaneModel implements Renderable {
         this.planeModel.setPathType(AVKey.LINEAR);
         this.planeModel.setFollowTerrain(false);
         this.planeModel.setNumSubsegments(1);
-        var attrs = new BasicShapeAttributes();
+        BasicShapeAttributes attrs = new BasicShapeAttributes();
         attrs.setOutlineMaterial(new Material(this.color));
         this.planeModel.setAttributes(attrs);
 

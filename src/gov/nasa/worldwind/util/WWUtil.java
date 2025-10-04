@@ -58,7 +58,7 @@ public class WWUtil
         if (s == null)
         {
             String message = Logging.getMessage("nullValue.StringIsNull");
-            Logging.logger().severe(message);
+            Logging.logger().fine(message);
             throw new IllegalArgumentException(message);
         }
 
@@ -68,15 +68,20 @@ public class WWUtil
             {
                 return null;
             }
-
-            return Integer.valueOf(s);
+            Number n = NumberFormat.getInstance().parse(s);
+            return n.intValue();
+            //return Integer.valueOf(s);
         }
         catch (NumberFormatException e)
         {
             String message = Logging.getMessage("generic.ConversionError", s);
-            Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
+            Logging.logger().log(java.util.logging.Level.FINE, message, e);
             return null;
-        }
+        } catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
     }
 
     /**

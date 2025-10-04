@@ -75,7 +75,7 @@ public class SurfaceImages extends ApplicationTemplate {
                 Path boundary = new Path(si1.getCorners(), 0);
                 boundary.setSurfacePath(true);
                 boundary.setPathType(AVKey.RHUMB_LINE);
-                var attrs = new BasicShapeAttributes();
+                BasicShapeAttributes attrs = new BasicShapeAttributes();
                 attrs.setOutlineMaterial(new Material(new Color(0, 255, 0)));
                 boundary.setAttributes(attrs);
                 boundary.makeClosed();

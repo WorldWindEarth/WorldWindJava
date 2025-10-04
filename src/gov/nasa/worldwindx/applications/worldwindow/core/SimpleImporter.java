@@ -144,7 +144,7 @@ public class SimpleImporter {
     }
 
     protected void openShapefile(Object source) {
-        var factory = new ShapefileLayerFactory();
+    	ShapefileLayerFactory factory = new ShapefileLayerFactory();
         Layer layer = (Layer) factory.createFromShapefileSource(source);
         if (layer != null) {
             layer.setName(formName(source, null));

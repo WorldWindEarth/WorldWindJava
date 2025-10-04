@@ -43,7 +43,8 @@ import java.awt.event.*;
  * @see MeasureTool
  */
 public class MeasureToolController extends MouseAdapter
-        implements MouseListener, MouseMotionListener, SelectListener, PositionListener, RenderingListener
+        implements MouseListener, MouseMotionListener, 
+        SelectListener, PositionListener, RenderingListener
 {
     protected MeasureTool measureTool;
 
@@ -219,10 +220,9 @@ public class MeasureToolController extends MouseAdapter
 
                     if (measureTool.addControlPoint() != null) // null when the cursor is off the globe
                     {
-                        if (measureTool.getControlPoints().size() == 1)
-                        {
-                            measureTool.addControlPoint(); // Simulate a second click
-                        }
+//                        if (measureTool.getControlPoints().size() == 1) {
+//                            measureTool.addControlPoint(); // Simulate a second click
+//                        } 
                         // Set the rubber band target to the last control point or the relevant control for regular shapes.
                         if (measureTool.isRegularShape())
                         {
@@ -256,8 +256,8 @@ public class MeasureToolController extends MouseAdapter
     {
         if (this.isArmed() && this.isUseRubberBand() && mouseEvent.getButton() == MouseEvent.BUTTON1)
         {
-            if (measureTool.getPositions().size() == 1)
-                measureTool.removeControlPoint();
+//            if (measureTool.getPositions().size() == 1)
+//                measureTool.removeControlPoint();
             this.setActive(false);
             rubberBandTarget = null;
             // Disarm after second control point of a line or regular shape

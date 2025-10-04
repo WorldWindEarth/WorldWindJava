@@ -134,9 +134,9 @@ public class WorldWindDiagnostics {
             sb.append("\nJOGL Values\n");
             String pkgName = "com.jogamp.opengl";
             try {
-                getClass().getClassLoader().loadClass(pkgName + ".GL");
-
-                Package p = getClass().getClassLoader().getDefinedPackage(pkgName);
+              Class<?> clase = getClass().getClassLoader().loadClass(pkgName + ".GL");
+              
+                Package p =  clase.getPackage();//getClass().getClassLoader().getDefinedPackage(pkgName);
                 if (p == null) {
                     sb.append("WARNING: Package.getPackage(" + pkgName + ") is null\n");
                 } else {

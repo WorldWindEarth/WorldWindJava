@@ -1,0 +1,65 @@
+name: Build WorldWind Java
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        java-version: [11]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK ${{ matrix.java-version }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ matrix.java-version }}
+        distribution: 'temurin'
+        
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+          
+    - name: Make gradlew executable
+      run: chmod +x ./gradlew
+      
+    - name: Build with Gradle
+      run: ./gradlew build --no-daemon --warning-mode all
+      
+    - name: Run tests
+      run: ./gradlew test --no-daemon --warning-mode all
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: matrix.java-version == 11
+      with:
+        name: worldwind-java-build-${{ github.sha }}
+        path: |
+          build/libs/
+          worldwind-*.jar
+          worldwindx-*.jar
+        retention-days: 30
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-java-${{ matrix.java-version }}-${{ github.sha }}
+        path: |
+          build/test-results/
+          build/reports/
+        retention-days: 30

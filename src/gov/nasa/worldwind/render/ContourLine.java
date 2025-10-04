@@ -423,7 +423,7 @@ public class ContourLine implements Renderable {
             line = new Path(positions);
             line.setNumSubsegments(0);
             line.setSurfacePath(true);
-            var attrs = new BasicShapeAttributes();
+            BasicShapeAttributes attrs = new BasicShapeAttributes();
             attrs.setOutlineWidth(this.getLineWidth());
             attrs.setOutlineMaterial(new Material(this.getColor()));
             line.setAttributes(attrs);

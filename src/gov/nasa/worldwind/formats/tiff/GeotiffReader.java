@@ -41,6 +41,7 @@ import java.io.*;
 import java.nio.*;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @author brownrigg
@@ -214,6 +215,7 @@ public class GeotiffReader implements Disposable {
             tiff.rowsPerStrip = Integer.MAX_VALUE;
         }
 
+        tiff.planarConfig = Tiff.PlanarConfiguration.PLANAR;
         if (tiff.planarConfig != Tiff.PlanarConfiguration.PLANAR
                 && tiff.planarConfig != Tiff.PlanarConfiguration.CHUNKY) {
             String msg = Logging.getMessage("GeotiffReader.InvalidIFDEntryValue", tiff.planarConfig,
@@ -227,10 +229,13 @@ public class GeotiffReader implements Disposable {
                 switch (entry.tag) {
                     case Tiff.Tag.STRIP_OFFSETS:
                         stripOffsets = entry.getAsLongs();
+                        System.out.println("offsets= "+Arrays.toString(stripOffsets));
+                        //[384, 8232, 16080][462, 8222, 15982, 23742, 31502, 39262, 47022, 54782, 62542, 70302, 78062, 85822, 93582, 101342, 109102, 116862][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][396, 8396, 16396, 24396, 32396][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][384, 8232, 16080][384, 8232, 16080][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600][462, 8222, 15982, 23742, 31502, 39262, 47022, 54782, 62542, 70302, 78062, 85822, 93582, 101342, 109102, 116862][384, 8232, 16080][504, 8372, 16240, 24108, 31976, 39844, 47712, 55580, 63448, 71316, 79184, 87052, 94920, 102788, 110656, 118524, 126392, 134260, 142128, 149996, 157864, 165732, 173600]
                         break;
 
                     case Tiff.Tag.STRIP_BYTE_COUNTS:
                         stripCounts = entry.getAsLongs();
+                        System.out.println("stripCounts= "+Arrays.toString(stripCounts));
                         break;
 
                     case Tiff.Tag.COLORMAP:
@@ -241,6 +246,14 @@ public class GeotiffReader implements Disposable {
                 Logging.logger().finest(e.toString());
             }
         }
+        
+        if (null == stripOffsets || 0 == stripOffsets.length) {
+        	stripOffsets=new long[1];
+        	stripOffsets[0]=tiff.height*tiff.width;
+        	stripCounts=new long[1];
+        	stripCounts[0]=1;
+        }
+        	
 
         if (null == stripOffsets || 0 == stripOffsets.length) {
             String message = Logging.getMessage("GeotiffReader.MissingRequiredTag", "StripOffsets");
@@ -262,7 +275,11 @@ public class GeotiffReader implements Disposable {
             if ((predictorEntry != null) && (predictorEntry.asLong() != 0)) {
                 tiffDifferencing = true;
             }
-        } else if (notToday != null && notToday.asLong() != Tiff.Compression.NONE) {
+
+        }
+        else if (notToday != null && notToday.asLong() != Tiff.Compression.NONE)
+        {
+        	System.out.println("compression tag "+notToday.tag+" long "+notToday.asLong());
             String message = Logging.getMessage("GeotiffReader.CompressionFormatNotSupported");
             Logging.logger().severe(message);
             throw new IOException(message);

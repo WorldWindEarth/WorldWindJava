@@ -1,8 +1,16 @@
-apply plugin: 'java-library'
-apply plugin: 'maven-publish'
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
 
 group = 'earth.worldwind'
-version = '2.3.1' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
+version = '2.4.0' + (project.hasProperty('snapshot') ? '-SNAPSHOT' : '')
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 ant {
     property(file: 'release-build.properties')
@@ -10,10 +18,10 @@ ant {
 }
 
 ext {
-    joglVersion = '2.5.0'
+    joglVersion = '2.6.0'
     gdalVersion = '3.10.0'
-    jacksonVersion = '1.9.13'
-    junitVersion = '4.5'
+    jacksonVersion = '2.17.0'
+    junitVersion = '4.13.2'
 }
 
 repositories {
@@ -23,8 +31,11 @@ repositories {
 }
 
 dependencies {
-	implementation "org.jogamp.jogl:jogl-all-main:$project.joglVersion"
-    implementation "org.jogamp.gluegen:gluegen-rt-main:$project.joglVersion"
+    //implementation "org.jogamp.jogl:jogl-all-main:$project.joglVersion"
+    //implementation "org.jogamp.gluegen:gluegen-rt-main:$project.joglVersion"
+	// Use local JOGL files instead of Maven dependencies
+    implementation files("jogl-all.jar")
+    implementation files("gluegen-rt.jar")
 
     if (project.hasProperty('systemGDAL')) {
         implementation files("${ant.properties['gdal.jar.dir']}/gdal.jar")
@@ -32,7 +43,8 @@ dependencies {
         implementation "org.gdal:gdal:$project.gdalVersion"
     }
 
-    implementation "org.codehaus.jackson:jackson-core-asl:$project.jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-core:$project.jacksonVersion"
+    implementation "com.fasterxml.jackson.core:jackson-databind:$project.jacksonVersion"
 
     testImplementation "junit:junit:$project.junitVersion"
 }
@@ -40,7 +52,7 @@ dependencies {
 task sourcesJar(type: Jar, dependsOn: classes) {
     group = 'build'
     description = 'Assembles a jar archive containing the sources.'
-    classifier = 'sources'
+    archiveClassifier = 'sources'
     from (sourceSets.main.allSource) {
         include '**/*.java'
         exclude 'config/**'
@@ -52,7 +64,7 @@ task sourcesJar(type: Jar, dependsOn: classes) {
 task extensionsJar(type: Jar) {
     group = 'build'
     description = 'Assembles a jar archive containing the extension classes.'
-    baseName = 'worldwindx'
+    archiveBaseName = 'worldwindx'
     from (sourceSets.main.output) {
         exclude 'com/**'
         exclude 'config/**'
@@ -62,8 +74,8 @@ task extensionsJar(type: Jar) {
     doLast {
         copy {
             from "$buildDir/libs/$extensionsJar.archiveFileName"
-            into project.projectDir
-            rename "$extensionsJar.archiveFileName", "$extensionsJar.baseName.$extensionsJar.extension"
+            into projectDir
+            rename "$extensionsJar.archiveFileName", "$extensionsJar.archiveBaseName.$extensionsJar.archiveExtension"
         }
     }
 }
@@ -71,7 +83,7 @@ task extensionsJar(type: Jar) {
 task javadocJar(type: Jar, dependsOn: javadoc) {
     group = 'build'
     description = 'Assembles a jar archive containing the javadocs.'
-    classifier = 'javadoc'
+    archiveClassifier = 'javadoc'
     from javadoc.destinationDir
 }
 
@@ -101,9 +113,9 @@ publishing {
             from components.java
             artifact sourcesJar
             artifact javadocJar
-            groupId project.group
-            artifactId project.name
-            version project.version
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
             pom.withXml {
                 def root = asNode()
                 root.appendNode('description',
@@ -138,6 +150,11 @@ sourceSets {
 
 compileJava {
     options.debug = !project.hasProperty('release')
+    options.release = 17
+}
+
+compileTestJava {
+    options.release = 17
 }
 
 test {
@@ -152,15 +169,15 @@ jar {
     doLast {
         copy {
             from "$buildDir/libs/$jar.archiveFileName"
-            into project.projectDir
-            rename "$jar.archiveFileName", "$jar.baseName.$jar.extension"
+            into projectDir
+            rename "$jar.archiveFileName", "$jar.archiveBaseName.$jar.archiveExtension"
         }
     }
 }
 
 javadoc {
     options {
-        overview = "$project.projectDir/src/overview.html"
+        overview = "$projectDir/src/overview.html"
         windowTitle = 'WorldWindJava API'
         title = 'NASA WorldWind Java-Community Edition'
         header = 'NASA WorldWind-CE'
@@ -169,6 +186,11 @@ javadoc {
         version = false
         author = false
         use = true
+        // Make Javadoc more lenient to handle HTML issues
+        addBooleanOption('Xdoclint:none', true)
+        addBooleanOption('quiet', true)
+        // Java 17 compatibility
+        addStringOption('source', '17')
     }
     exclude 'com/**'
     exclude 'gov/nasa/worldwind/formats/**'
@@ -259,14 +281,32 @@ task milStd2525Zip(type: Zip, dependsOn: processMilStd2525SVGs) {
     def milStd2525PngDir = file(ant.properties['milstd2525.png.dir'])
     from milStd2525PngDir
     include '**/*'
-    archiveName 'milstd2525-symbols.zip'
-    destinationDir milStd2525OutDir
+    archiveFileName = 'milstd2525-symbols.zip'
+    destinationDirectory = milStd2525OutDir
 }
 
 task runLayerManager(type: JavaExec, dependsOn: classes) {
     group = 'run'
     description = 'Runs the LayerManager example app.'
     classpath sourceSets.main.runtimeClasspath
-    main = 'gov.nasa.worldwindx.examples.layermanager.LayerManagerApp'
-    systemProperty 'java.util.logging.config.file', "$project.projectDir/logging.properties"
+    mainClass = 'gov.nasa.worldwindx.examples.layermanager.LayerManagerApp'
+    systemProperty 'java.util.logging.config.file', "$projectDir/logging.properties"
+    jvmArgs = [
+        '--add-exports', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-exports', 'java.desktop/sun.awt=ALL-UNNAMED',
+        '--add-exports', 'java.desktop/sun.java2d=ALL-UNNAMED'
+    ]
+}
+
+task runWorldWindow(type: JavaExec, dependsOn: classes) {
+    group = 'run'
+    description = 'Runs the WorldWindow application with Java 17 compatibility options.'
+    classpath sourceSets.main.runtimeClasspath
+    mainClass = 'gov.nasa.worldwindx.applications.worldwindow.WorldWindow'
+    systemProperty 'java.util.logging.config.file', "$projectDir/logging.properties"
+    jvmArgs = [
+        '--add-exports', 'java.base/java.lang=ALL-UNNAMED',
+        '--add-exports', 'java.desktop/sun.awt=ALL-UNNAMED',
+        '--add-exports', 'java.desktop/sun.java2d=ALL-UNNAMED'
+    ]
 }

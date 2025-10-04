@@ -48,11 +48,11 @@ public class JOGLVersionInfo {
         Package p = null;
 
         try {
-            classLoader.loadClass(pkgName + "." + className);
+           Class<?> clase = classLoader.loadClass(pkgName + "." + className);
 
             // TODO: message logging
-            p = classLoader.getDefinedPackage(pkgName);
-            if (p == null) {
+             p =  clase.getPackage();//  p = classLoader.getDefinedPackage(pkgName);
+            if (pkgName == null) {
                 System.out.println("WARNING: Package.getPackage(" + pkgName + ") is null");
             }
         } catch (ClassNotFoundException e) {

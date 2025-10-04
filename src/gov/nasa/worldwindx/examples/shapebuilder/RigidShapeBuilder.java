@@ -1863,14 +1863,14 @@ public class RigidShapeBuilder extends ApplicationTemplate
             {
                 JMenuItem item = new JMenuItem("Open...");
                 item.setAccelerator(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+                    KeyEvent.VK_O, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
                 item.setActionCommand(OPEN);
                 item.addActionListener(controller);
                 menu.add(item);
 
                 item = new JMenuItem("Save...");
                 item.setAccelerator(KeyStroke.getKeyStroke(
-                    KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+                    KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
                 item.setActionCommand(SAVE);
                 item.addActionListener(controller);
                 menu.add(item);
@@ -1900,7 +1900,7 @@ public class RigidShapeBuilder extends ApplicationTemplate
                 {
                     JMenuItem item = new JMenuItem(mode.getMode());
                     item.setAccelerator(KeyStroke.getKeyStroke(mode.getShortcut(),
-                        Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+                        Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
                     item.addActionListener(new ActionListener()
                     {
                         public void actionPerformed(ActionEvent e)
@@ -1936,7 +1936,7 @@ public class RigidShapeBuilder extends ApplicationTemplate
             {
                 JMenuItem item = new JMenuItem("Deselect");
                 item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
-                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
                 item.setActionCommand(CLEAR_SELECTION);
                 item.addActionListener(controller);
                 menu.add(item);

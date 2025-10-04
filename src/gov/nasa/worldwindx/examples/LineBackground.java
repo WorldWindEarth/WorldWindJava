@@ -94,7 +94,7 @@ public class LineBackground extends ApplicationTemplate {
                 path2.setSurfacePath(true);
                 path2.setPathType(AVKey.RHUMB_LINE);
                 float[] c = backgroundAttrs.getOutlineMaterial().getDiffuse().getColorComponents(new float[3]);
-                var attrs = new BasicShapeAttributes(backgroundAttrs);
+                BasicShapeAttributes attrs = new BasicShapeAttributes(backgroundAttrs);
                 attrs.setOutlineMaterial(new Material(new Color(c[0], c[1], c[2], (float) backgroundAttrs.getOutlineOpacity())));
                 path2.setAttributes(attrs);
                 path2.makeClosed();

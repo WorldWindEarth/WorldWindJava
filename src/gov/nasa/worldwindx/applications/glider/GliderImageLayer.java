@@ -171,7 +171,7 @@ public class GliderImageLayer extends AbstractLayer {
 
         for (GliderRegionOfInterest region : regions.regions) {
             Path p = new Path(region.getLocations(), altitude);
-            var attrs = new BasicShapeAttributes();
+            BasicShapeAttributes attrs = new BasicShapeAttributes();
             attrs.setOutlineMaterial(new Material(region.getColor()));
             p.setAttributes(attrs);
             p.setSurfacePath(true);

@@ -45,9 +45,9 @@ public class WMSLogoURL extends WMSLayerInfoURL
     protected Integer width;
     protected Integer height;
 
-    public WMSLogoURL(String namespaceURI)
-    {
+    public WMSLogoURL(String namespaceURI)  {
         super(namespaceURI);
+
     }
 
     @Override
@@ -73,8 +73,11 @@ public class WMSLogoURL extends WMSLayerInfoURL
             if (attr.getName().getLocalPart().equals("height") && attr.getValue() != null)
             {
                 Integer i = WWUtil.convertStringToInteger(attr.getValue());
-                if (i != null)
-                    this.setHeight(i);
+                if (i != null) {
+                	this.setHeight(i);
+                } else {
+                	System.out.println("fallo parsear la altura para el logo de "+this.namespaceURI);
+                }
             }
         }
     }

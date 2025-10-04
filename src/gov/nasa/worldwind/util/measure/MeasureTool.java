@@ -1777,7 +1777,7 @@ public class MeasureTool extends AVListImpl implements Disposable {
                 this.line = new Path();
                 setFollowTerrain(this.isFollowTerrain());
                 this.line.setPathType(this.getPathType());
-                var attrs = new BasicShapeAttributes();
+                BasicShapeAttributes attrs = new BasicShapeAttributes();
                 attrs.setOutlineWidth(this.getLineWidth());
                 attrs.setOutlineMaterial(new Material(this.getLineColor()));
                 this.line.setAttributes(attrs);

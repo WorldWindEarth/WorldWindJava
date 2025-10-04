@@ -38,8 +38,8 @@ The JOGL library provides WorldWind Java with (1) a Java binding to the OpenGL A
 with Java's AWT and Swing windowing toolkits:
 http://jogamp.org/jogl/www/
 
-WorldWind Java uses JOGL v2.4, released on March 7th, 2020 and downloaded from:
-https://jogamp.org/deployment/v2.4.0-rc-20200307/archive/jogamp-all-platforms.7z
+WorldWind Java uses JOGL v2.6.0, released in 2024 and downloaded from:
+https://jogamp.org/deployment/v2.6.0/archive/jogamp-all-platforms.7z
 
 The JOGL library compiled JAR files and README files are checked into the WorldWind Java source, distributed with all
 WorldWind Java builds and included in the WorldWind Java Web Start deployment. This is necessary in order ensure

@@ -27,5 +27,5 @@
         "jackson-core-asl.jar",
         "junit-4.5.jar"
     ],
-    "javaVersion": "11"
+    "javaVersion": "17"
 }

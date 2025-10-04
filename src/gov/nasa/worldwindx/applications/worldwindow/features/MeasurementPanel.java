@@ -215,7 +215,7 @@ public class MeasurementPanel extends AbstractFeaturePanel {
             Path line = new Path();
             line.setPositions(new ArrayList<>());
             line.setSurfacePath(true);
-            var attrs = new BasicShapeAttributes();
+            BasicShapeAttributes attrs = new BasicShapeAttributes();
             attrs.setOutlineWidth(shapeType.equals(FREEHAND) ? 2 : 4);
             line.setAttributes(attrs);
             return line;

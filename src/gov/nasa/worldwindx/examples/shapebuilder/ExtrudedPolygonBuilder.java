@@ -942,7 +942,7 @@ public class ExtrudedPolygonBuilder extends ApplicationTemplate
             {
                 JMenuItem item = new JMenuItem("Deselect");
                 item.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D,
-                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+                    Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()));
                 item.setActionCommand(CLEAR_SELECTION);
                 item.addActionListener(controller);
                 menu.add(item);

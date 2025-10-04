@@ -1275,7 +1275,7 @@ public class TerrainProfileLayer extends AbstractLayer implements PositionListen
                     if (this.pickedShape == null) {
                         this.pickedShape = new Path(posList);
                         this.pickedShape.setPathType(AVKey.LINEAR);
-                        var attrs = new BasicShapeAttributes();
+                        BasicShapeAttributes attrs = new BasicShapeAttributes();
                         attrs.setOutlineWidth(2);
                         attrs.setOutlineMaterial(new Material(new Color(this.color.getRed(),
                                 this.color.getGreen(), (int) (this.color.getBlue() * .8), (int) (255 * .8))));
@@ -1448,7 +1448,7 @@ public class TerrainProfileLayer extends AbstractLayer implements PositionListen
                 if (this.selectionShape == null) {
                     this.selectionShape = new Path(Arrays.asList(this.positions));
                     this.selectionShape.setSurfacePath(true);
-                    var attrs = new BasicShapeAttributes();
+                    BasicShapeAttributes attrs = new BasicShapeAttributes();
                     attrs.setOutlineWidth(2);
                     attrs.setOutlineMaterial(new Material(new Color(this.color.getRed(),
                             this.color.getGreen(), (int) (this.color.getBlue() * .5), (int) (255 * .8))));
