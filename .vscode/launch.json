@@ -7,8 +7,10 @@
             "name": "WorldWindow",
             "request": "launch",
             "mainClass": "gov.nasa.worldwindx.applications.worldwindow.WorldWindow",
+
             "projectName": "worldwind-WorldWindJava",
             "vmArgs": "-Djava.util.logging.config.file=logging.properties --add-exports java.base/java.lang=ALL-UNNAMED --add-exports java.desktop/sun.awt=ALL-UNNAMED --add-exports java.desktop/sun.java2d=ALL-UNNAMED"
+
         },
         {
             "type": "java",
